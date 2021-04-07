@@ -1,5 +1,4 @@
 import tkinter as tk
-import PyPDF2
 
 from PIL import Image, ImageTk
 from tkinter import filedialog
@@ -33,13 +32,34 @@ def open_file():
     if len(tempdir) > 0:
         print ("You chose %s" % tempdir)
         browse_text.set("Rechercher")
-    
+        selectedR.set(tempdir)
+        
+        
+
+#Selected Folder
+selected_text = tk.Label(root, text="Le dossier ciblé à pour chemin : ", font="Raleway")
+selected_text.config(font=("Raleway",20))
+selected_text.grid(columnspan=2, column=0, row=3, ipady=20,sticky="n")     
+
+# selected Result
+tempdir = ""
+selectedR = tk.StringVar()
+selectedR.set("(aucun dossier sélectionné)")
+selectLabel = tk.Label(root, textvariable=selectedR,font="Raleway")
+selectLabel.grid(columnspan=3, column=0,row=5)
+
 
 #Brows Button
 browse_text = tk.StringVar()
 browse_btn = tk.Button(root, textvariable=browse_text, command=lambda:open_file(), font='Raleway',bg='#20bebe', fg="white", height=2, width=15)
 browse_text.set("Rechercher")
 browse_btn.grid(column=1, row=2)
+
+
+
+
+
+
 
 canvas = tk.Canvas(root, width=600, height=250)
 canvas.grid(columnspan=3, rowspan=3)
