@@ -1,14 +1,14 @@
 import pickle
 
-tempdir = 'pfoo/gfdg/fdfgo'
+#tempdir = 'pfoo/gfdg/fdfgo'
 
-def saveConfig() :
-    folderTarget = tempdir
-    saveFile = open("../saveFile/saveCg.txt","wb")
+def saveConfig(folderTarget) :
+    #folderTarget = tempdir
+    saveFile = open("./saveFile/saveCg.txt","wb")
     pickle.dump(folderTarget, saveFile)
     saveFile.close()
 
-saveConfig()
+#saveConfig()
 
 
 #Enregistrer mes variables sous forme d'une liste dans un fichier

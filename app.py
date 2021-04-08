@@ -1,8 +1,17 @@
 import tkinter as tk
 
+
 from PIL import Image, ImageTk
 from tkinter import filedialog
 import os
+
+from utils.loadConfig import loadConfig
+from utils.saveConfig import saveConfig
+
+
+#import saved path
+#tempdir = loadConfig()
+
 
 root = tk.Tk()
 
@@ -28,12 +37,15 @@ def open_file():
     browse_text.set("Chargement...")
 
     currdir = os.getcwd()
+
+
     tempdir = filedialog.askdirectory(parent=root, initialdir=currdir, title='Please select a directory')
     if len(tempdir) > 0:
         print ("You chose %s" % tempdir)
         browse_text.set("Rechercher")
+        saveConfig(tempdir)
         selectedR.set(tempdir)
-        
+
         
 
 #Selected Folder
@@ -41,10 +53,17 @@ selected_text = tk.Label(root, text="Le dossier ciblé à pour chemin : ", font=
 selected_text.config(font=("Raleway",20))
 selected_text.grid(columnspan=2, column=0, row=3, ipady=20,sticky="n")     
 
-# selected Result
+# load saved path
 tempdir = ""
+tempdir = loadConfig()
+
 selectedR = tk.StringVar()
-selectedR.set("(aucun dossier sélectionné)")
+if tempdir == "":
+    selectedR.set("(aucun dossier sélectionné)")
+else:
+    selectedR.set(tempdir)
+
+# selected Result
 selectLabel = tk.Label(root, textvariable=selectedR,font="Raleway")
 selectLabel.grid(columnspan=3, column=0,row=5)
 
