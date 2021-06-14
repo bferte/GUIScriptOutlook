@@ -74,7 +74,12 @@ def on_created(event):
 
     
     for file in filesAbsolute:
-        mail.Attachments.Add(str(file))
+        try:
+            mail.Attachments.Add(str(file))
+        except:
+            print('problem')
+            ctypes.windll.user32.MessageBoxW(0, "Seulement des fichiers sont accepté","fichiers seulement",0)
+        
 
     #while not mail.sent :
      #       print('pas envoyé')
